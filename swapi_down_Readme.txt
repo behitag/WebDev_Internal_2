@@ -1,0 +1,2 @@
+Swapi api was half of today down and did not work, so I had to search for another public api. I found this api which gives some quotes of the series "breaking bad".
+In my Git Repo there I uploaded a file named "swapi_down", which shows the swapi api is still down.
