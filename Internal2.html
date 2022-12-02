@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript TEST</title>
+</head>
+<body>
+
+    <script type="text/javascript">
+
+        const api_url = 'https://breakingbadapi.com/api/quotes';
+
+        showFilms();
+
+        async function showFilms () {
+
+            const response = await fetch(api_url);
+            const data = await response.json();
+            console.log(data);
+            console.log(data[0]);
+
+            const btn = new Array(data.length);
+
+            document.write('Memorable Quotes of the Series "Breaking Bad". Click on each one to see the details!');
+            document.write('<br>');
+            document.write('from the api: ' + api_url);
+            document.write('<br>');
+            document.write('<br>');
+
+            for(let i=0; i<data.length; i++) {
+                btn[i] = document.createElement("button");
+                btn[i].innerHTML = data[i].quote;
+                document.body.appendChild(btn[i]);
+                document.write('<br>')
+                btn[i].addEventListener("click", function () {
+                    document.body.innerHTML = '';
+                    document.write('Quote: ' + '"' + data[i].quote + '"');
+                    document.write('<br>')
+                    document.write('Author: ' + data[i].author);
+                    document.write('<br>')
+                    document.write('Quote_id: ' + data[i].quote_id);
+                    document.write('<br>')
+                    document.write('<br>')
+
+                    backBtn = document.createElement("button");
+                    backBtn.innerHTML = 'GO BACK';
+                    document.body.appendChild(backBtn);
+                    backBtn.addEventListener("click", function () {
+                        document.body.innerHTML = '';
+                        showFilms();
+                    })
+                })
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>
